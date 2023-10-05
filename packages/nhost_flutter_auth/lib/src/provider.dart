@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nhost_dart/nhost_dart.dart';
+import 'package:nhost_auth_dart/nhost_auth_dart.dart';
+import 'package:nhost_sdk/nhost_sdk.dart';
 
 /// Exposes Nhost authentication information to its subtree.
 class NhostAuthProvider extends InheritedNotifier<AuthNotifier> {
@@ -20,16 +21,12 @@ class NhostAuthProvider extends InheritedNotifier<AuthNotifier> {
   }
 
   static NhostAuthClient? of(BuildContext context) {
-    return context
-        .dependOnInheritedWidgetOfExactType<NhostAuthProvider>()
-        ?.notifier
-        ?.value;
+    return context.dependOnInheritedWidgetOfExactType<NhostAuthProvider>()?.notifier?.value;
   }
 }
 
 /// A [Listenable] that notifies when Nhost authentication states changes
-class AuthNotifier extends ChangeNotifier
-    implements ValueListenable<NhostAuthClient> {
+class AuthNotifier extends ChangeNotifier implements ValueListenable<NhostAuthClient> {
   AuthNotifier(NhostAuthClient auth) : _auth = auth {
     _unsubscribeAuthListener = _auth.addAuthStateChangedCallback(
       (_) => notifyListeners(),

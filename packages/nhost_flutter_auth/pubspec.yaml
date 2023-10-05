@@ -6,6 +6,7 @@ version: 3.0.1
 homepage: https://nhost.io
 repository: https://github.com/nhost/nhost-dart/tree/main/packages/nhost_flutter_auth
 issue_tracker: https://github.com/nhost/nhost-dart/issues
+publish_to: none
 
 environment:
   sdk: '>=2.14.0 <3.0.0'
@@ -15,7 +16,15 @@ dependencies:
   flutter:
     sdk: flutter
   #Nhost_dart
-  nhost_dart: ^1.0.1
+  nhost_sdk: #^4.0.0
+    git:
+      url: https://github.com/sgruhier/nhost-dart.git
+      path:  packages/nhost_sdk
+  nhost_auth_dart: #^1.0.0
+    git:
+      url: https://github.com/sgruhier/nhost-dart.git
+      path:  packages/nhost_auth_dart
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
